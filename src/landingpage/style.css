@@ -1,0 +1,56 @@
+
+
+  h4:after {
+    display:block;
+    content: '';
+    width: inherit;
+    border-bottom: solid 3px #1f6b1d;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+  }
+  
+  h4:hover:after { transform: scaleX(1); }
+  
+  h4.from-left:after {
+    transform-origin: left;
+  }
+  
+  h4.from-right:after {
+    transform-origin: right;
+  }
+
+  #effect {
+    transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+  }
+
+  #cssj {
+    text-align: center;
+  }
+
+  .bgs {
+    background-image: url('../assets/background.png');
+    background-repeat: no-repeat;
+    height: 775px;
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    .bgs {
+        background-image: none;
+    }
+}
+
+
+/* rgb(0,143,17) */
+
+.shadows {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(0,143,17, 0.35) 0px -2px 6px 0px inset;
+} 
+
+.buttonshadow{
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.buttonshadow:hover{
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
