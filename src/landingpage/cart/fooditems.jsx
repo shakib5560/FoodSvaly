@@ -3,12 +3,15 @@ import './style.css'
 import { FaStar } from "react-icons/fa";
 import { BiSolidCart } from "react-icons/bi";
 import { useState } from 'react';
+import {useDispatch} from 'react-redux'
+import { addToCart } from '../../Redux/slices/CartSlice';
 
 function Fooditems({id,images,title,desc,price,rating,category}) {
 
-  const [isAdd, setIsAdd] = useState(true);
+  const dispatch = useDispatch();
+
 const addtocartbtn = () => {
-    setIsAdd(!isAdd)
+    dispatch(addToCart({id,images,title,price,rating, qty: 1}))
 }
 
   return (
@@ -30,7 +33,7 @@ const addtocartbtn = () => {
 
       <div className='flex justify-between w-[80%] mt-10'>
         <h1 className='text-2xl font-bold'>৳{price}<span className=' ml-1 text-sm font-normal text-gray-400 line-through'>৳200</span></h1>
-        <button onClick={addtocartbtn} className={`hover:scale-110 duration-500 ease-in-out shadow-lg flex mr-[-34px] mt-[-5px] items-center gap-3 border-solid border-[3px] ${isAdd ? 'border-[#008a0e]' : 'bg-[#008a0e] text-white'}  rounded-lg p-2 font-medium`}> Add To Cart <BiSolidCart/></button>
+        <button onClick={addtocartbtn} className={`hover:scale-110  duration-500 ease-in-out shadow-lg flex mr-[-34px] mt-[-5px] items-center gap-3 border-solid border-[3px] border-[#008a0e] rounded-lg p-2 font-medium`}> Add To Cart <BiSolidCart/></button>
       </div>
        </div>
     </div>

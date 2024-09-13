@@ -2,8 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { SlArrowRight } from "react-icons/sl";
 import './style.css'; // Custom CSS file
 import Itemscart from './itemscart';
+import { useSelector } from 'react-redux';
 
 function Addtocart({ isShow }) {
+
+  const cartItems = useSelector((state) => state.cart.cart);
+  console.log(cartItems);
+
   const [isVisible, setIsVisible] = useState(true);
   const [isHidden, setIsHidden] = useState(false);
 
@@ -25,7 +30,7 @@ function Addtocart({ isShow }) {
   return (
     <>
       {!isHidden && (
-        <div className={`cartcss ${!isVisible ? "slide-right" : ""} overflow-hidden ${!isShow ? "flex" : "hidden" } w-[320px] rounded-l-[40px] top-[3.5rem] h-[85vh] fixed bg-white gray-300 carsshadow right-0`}>
+        <div className={`cartcss ${!isVisible ? "slide-right" : ""} overflow-hidden z-40 ${!isShow ? "flex" : "hidden" } w-[320px] rounded-l-[40px] top-[3.5rem] h-[85vh] fixed bg-white gray-300 carsshadow right-0`}>
           <button className='h-full w-4 ml-2' onClick={hideCart}>
             <SlArrowRight className='text-xl cursor-pointer text-gray-500' />
           </button>
@@ -33,9 +38,13 @@ function Addtocart({ isShow }) {
           <div className='h-full static w-[95%] block'>
             <h1 className='relative text-center text-xl mt-2 font-medium'>Cart <span className='text-[#008a0e]'>Items</span></h1>
 
-            <div className='h-[72%] ml-3 gap-3 mt-4 flex flex-col w-[92%]'>
-              <Itemscart />
-              <Itemscart />
+            <div className='h-[72%] ml-3 gap-3 mt-4 flex flex-col w-[92%] flex-wrap overflow-y-auto'>
+
+              { cartItems.length > 0 ? cartItems.map((item) => {
+                return (
+                <Itemscart key={item.id} qty={item.qty} title={item.title} price={item.price} images={item.images} reating={item.rating} />)
+              }): <h3 className='font-medium fixed text-xl top-[48%] right-[5.4%] text-gray-500'>No items in cart</h3>}
+
             </div>
 
             <div className='bottom-[7.5rem] fixed'>
